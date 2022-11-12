@@ -5,6 +5,13 @@ import 'package:avocati/utils/utils.dart';
 import 'package:flutter/gestures.dart';
 
 class LoginWidget extends StatefulWidget {
+  final VoidCallback onClickedSignUp; 
+
+  const LoginWidget({
+    Key? key,
+    required this.onClickedSignUp,
+  }) : super(key: key);
+
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
 }
@@ -23,36 +30,63 @@ class _LoginWidgetState extends State<LoginWidget> {
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
-    padding: EdgeInsets.all(16),
+    padding: const EdgeInsets.all(16),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: 40,), 
+        const SizedBox(height: 60,),
+        const FlutterLogo(size: 120,),
+        const SizedBox(height: 20,), 
+        const Text(
+          'Hey There, \n Welcome back',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 40,), 
         TextField(
           controller: emailController,
           cursorColor: Colors.white,
           textInputAction: TextInputAction.next,
-          decoration: InputDecoration(labelText: 'Email adress'),
+          decoration: const InputDecoration(labelText: 'Email adress'),
         ), 
-        SizedBox(height: 4,),
+        const SizedBox(height: 4,),
         TextField(
           controller: passwordController,
           cursorColor: Colors.white,
           textInputAction: TextInputAction.done,
-          decoration: InputDecoration(labelText: 'Password'),
+          decoration: const InputDecoration(labelText: 'Password'),
+          obscureText: true,
         ),
-        SizedBox(height: 20,), 
+        const SizedBox(height: 20,), 
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            minimumSize: Size.fromHeight(50)
+            minimumSize: const Size.fromHeight(50)
             ),
-          icon: Icon(Icons.lock_open, size: 32,),
-          label: Text(
+          icon: const Icon(Icons.lock_open, size: 32,),
+          label: const Text(
             'Sign In',
             style: TextStyle(fontSize: 24),
           ),
           onPressed: signIn,
         ),
+        const SizedBox(height: 24), 
+        RichText(
+          text: TextSpan(
+            style: const TextStyle(color: Colors.white, fontSize: 20),
+            text: 'No account? ',
+            children: [
+              TextSpan(
+                recognizer: TapGestureRecognizer()
+                  ..onTap = widget.onClickedSignUp,
+                text: 'Sign Up', 
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Theme.of(context).colorScheme.secondary
+                ),
+              ),
+            ],
+          )
+        )
       ],
     ),
   );
@@ -61,7 +95,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(child: CircularProgressIndicator())
+      builder: (context) => const Center(child: CircularProgressIndicator())
     );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -70,6 +104,8 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
     } on FirebaseAuthException catch (error) {
       print(error);
+
+        Utils.showSnackBar(error.message);
     }
 
     //Navigator.of(context) not working!

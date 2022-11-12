@@ -1,3 +1,6 @@
+
+import 'package:avocati/utils/utils.dart';
+import 'package:avocati/view/auth_page.dart';
 import 'package:avocati/view/home.dart';
 import 'package:avocati/widget/login_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,18 +21,17 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: title,
-      theme: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
-        .copyWith(secondary: Colors.tealAccent),
-      ),
-      home: MainPage(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+    scaffoldMessengerKey: Utils.messengerKey,
+    navigatorKey: navigatorKey,
+    debugShowCheckedModeBanner: false,
+    title: title,
+    theme: ThemeData.dark().copyWith(
+      colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.green)
+      .copyWith(secondary: Colors.tealAccent),
+    ),
+    home: MainPage(),
+  );
 }
 
 class MainPage extends StatelessWidget {
@@ -48,7 +50,7 @@ class MainPage extends StatelessWidget {
         else if (snapshot.hasData) {
           return HomePage();
         }else{
-          return LoginWidget();
+          return AuthPage();
         }
       },)
   );

@@ -2,6 +2,7 @@
 import 'package:avocati/utils/utils.dart';
 import 'package:avocati/view/auth_page.dart';
 import 'package:avocati/view/home.dart';
+import 'package:avocati/view/verify_email_page.dart';
 import 'package:avocati/widget/login_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,7 +49,7 @@ class MainPage extends StatelessWidget {
           return Center(child: Text('Something went wrong!'));
         }
         else if (snapshot.hasData) {
-          return HomePage();
+          return VerifyEmailPage();
         }else{
           return AuthPage();
         }

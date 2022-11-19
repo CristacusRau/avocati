@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "299386749710",
+    "project_id": "avocati-bc4ab",
+    "storage_bucket": "avocati-bc4ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299386749710:android:f418d09b04435a0b9d8d5f",
+        "android_client_info": {
+          "package_name": "com.cristacus.avocati"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299386749710-qsrao6b3gqt63hgpmrtoo12of8v2i5pe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6KBcK2Mdk3PV7Ch77IoGGFL4kDlGpYTs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299386749710-qsrao6b3gqt63hgpmrtoo12of8v2i5pe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
